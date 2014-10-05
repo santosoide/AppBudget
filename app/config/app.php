@@ -196,6 +196,9 @@ return array(
         // debug bar
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
+        // generate unique id
+        'Uuid' => 'Webpatser\Uuid\Uuid',
+
 	),
 
 );

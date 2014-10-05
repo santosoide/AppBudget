@@ -15,7 +15,8 @@
         "barryvdh/laravel-debugbar": "1.*",
         "intervention/image": "2.*",
         "barryvdh/laravel-ide-helper": "1.*",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "~2.3",
+        "webpatser/laravel-uuid": "1.*"
     },
     "require-dev": {
         "mockery/mockery": "dev-master",
