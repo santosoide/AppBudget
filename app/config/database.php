@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'appbudget',
+			'database'  => 'simdes_2014',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',
