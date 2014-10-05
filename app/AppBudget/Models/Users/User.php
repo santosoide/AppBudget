@@ -25,4 +25,6 @@ class User extends Model implements UserInterface, RemindableInterface
      */
     protected $hidden = ['password', 'remember_token'];
 
+    public  $incrementing  = false;
+
 }
