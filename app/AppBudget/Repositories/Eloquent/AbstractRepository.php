@@ -51,7 +51,8 @@ abstract class AbstractRepository
      */
     public function getUuid()
     {
-        return $this->uuid->generate(4);
+        return Uuid::generate(4);
+//        return $this->uuid->generate(4);
     }
 
 } 
