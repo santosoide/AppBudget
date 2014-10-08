@@ -16,16 +16,23 @@ use AppBudget\Repositories\RepositoryInterface\UserRepositoryInterface;
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
 
+    /**
+     * Instance Model User
+     *
+     * @param User $user
+     */
     public function __construct(User $user)
     {
         $this->model = $user;
     }
 
-    public function getAll()
-    {
-        return $this->model->paginate(2);
-    }
-
+    /**
+     * Menampilkan data, pencarian, pagination
+     * FullTextSearch
+     *
+     * @param $term
+     * @return mixed
+     */
     public function find($term)
     {
         return $this->model
@@ -33,6 +40,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->paginate(2);
     }
 
+    /**
+     * Menampilkan detil data
+     *
+     * @param $id
+     * @return \Illuminate\Support\Collection|static
+     */
     public function findById($id)
     {
         return $this->model->find($id);

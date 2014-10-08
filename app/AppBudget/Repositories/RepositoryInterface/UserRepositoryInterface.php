@@ -12,11 +12,6 @@ namespace AppBudget\Repositories\RepositoryInterface;
 interface UserRepositoryInterface {
 
     /**
-     * @return mixed
-     */
-    public function getAll();
-
-    /**
      * @param $term
      * @return mixed
      */
