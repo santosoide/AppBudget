@@ -56,7 +56,7 @@ return array(
 
     'extra' => array(
         'Artisan' => array('Illuminate\Foundation\Artisan'),
-        'Eloquents' => array('Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'),
+        'Eloquent' => array('Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'),
         'Session' => array('Illuminate\Session\Store'),
     ),
 
@@ -75,7 +75,7 @@ return array(
     
     /*
     |--------------------------------------------------------------------------
-    | Interface implementations
+    | RepositoryInterface implementations
     |--------------------------------------------------------------------------
     |
     | These interfaces will be replaced with the implementing class. Some interfaces
