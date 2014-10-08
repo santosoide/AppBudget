@@ -69,7 +69,7 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <input type="text" ng-model="main.term" ng-enter="cariData()" value="santoso" class="form-control" id="cari" placeholder="Cari">
+            <input type="text" ng-model="main.term" ng-enter="cariData()" class="form-control" id="cari" placeholder="Cari">
         </div>
     </div>
 
