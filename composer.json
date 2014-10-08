@@ -26,13 +26,13 @@
     "autoload": {
         "classmap": [
             "app/commands",
-            "app/Controllers",
             "app/database/migrations",
             "app/database/seeds",
             "app/tests/TestCase.php"
         ],
         "psr-0": {
-            "AppBudget": "app/"
+            "AppBudget": "app/",
+            "Controllers": "app/"
         }
     },
     "scripts": {
