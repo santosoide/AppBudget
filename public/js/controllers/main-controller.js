@@ -105,7 +105,7 @@ angular.module('mainCtrl', [])
         $scope.submitUser = function () {
 
             // umpan ke service save data
-            User.save($scope.userData)
+            User.store($scope.userData)
                 .success(function (data) {
                     // return sukses save
                     $scope.message = {

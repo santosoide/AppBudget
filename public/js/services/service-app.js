@@ -14,7 +14,7 @@ angular.module('userService', [])
             },
 
             // save a comment (pass in comment data)
-            save: function (userData) {
+            store: function (userData) {
                 return $http({
                     method: 'POST',
                     url: '/user',
