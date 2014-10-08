@@ -8,10 +8,11 @@
 
 namespace AppBudget\Repositories\Eloquent\User;
 
-
 use AppBudget\Models\User\User;
 use AppBudget\Repositories\Eloquent\AbstractRepository;
 use AppBudget\Repositories\RepositoryInterface\UserRepositoryInterface;
+use AppBudget\Services\Forms\User\CreateNewUserForm;
+use AppBudget\Services\Forms\User\EditUserForm;
 
 class UserRepository extends AbstractRepository implements UserRepositoryInterface
 {
@@ -37,7 +38,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         return $this->model
             ->FullTextSearch($term)
-            ->paginate(2);
+            ->paginate(10);
     }
 
     /**
@@ -49,6 +50,60 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function findById($id)
     {
         return $this->model->find($id);
+    }
+
+    public function destroy($id)
+    {
+        $data = $this->findById($id);
+
+        $data->delete();
+
+        return ['berhasil hapus data'];
+
+    }
+
+    /**
+     * Store new user
+     *
+     * @param array $data
+     * @return array
+     */
+    public function create(array $data)
+    {
+        $user = $this->getNew();
+
+        $user->_id = $this->getUuid();
+        $user->nama = e($data['nama']);
+        $user->email = e($data['email']);
+        $user->password = \Hash::make($data['password']);
+        $user->organisasi_id = $this->getUuid();
+//        $user->is_admin = $data['is_admin'];
+//        $user->is_active = $data['is_active'];
+        $user->save();
+
+        return [
+            'sukses' => 'Data berhasil disimpan.'
+        ];
+    }
+
+    /**
+     * Get input form
+     *
+     * @return CreateNewUserForm
+     */
+    public function getCreationForm()
+    {
+        return new CreateNewUserForm();
+    }
+
+    /**
+     * Get edit form
+     *
+     * @return EditUserForm
+     */
+    public function getEditForm()
+    {
+        return new EditUserForm();
     }
 
 } 

@@ -8,7 +8,6 @@
 
 namespace Controllers\User;
 
-
 use AppBudget\Repositories\RepositoryInterface\UserRepositoryInterface;
 use AppBudget\Repositories\RepositoryInterface\UserTrait;
 
@@ -29,7 +28,7 @@ class UserController extends \BaseController
     }
 
     /**
-     * Menampilkan list User
+     * Get list User
      *
      * @return mixed
      */
@@ -38,18 +37,53 @@ class UserController extends \BaseController
         return $this->user->find($this->input('term'));
     }
 
+    /**
+     * Get data user via ajax
+     *
+     * @return mixed
+     */
     public function read()
     {
         return $this->user->find($this->input('term'));
     }
 
     /**
+     * Get detail user
+     *
      * @param $id
      * @return mixed
      */
     public function show($id)
     {
         return $this->user->findById($id);
+    }
+
+    /**
+     * Store new user
+     *
+     * @return array|mixed
+     */
+    public function store()
+    {
+        $form = $this->user->getCreationForm();
+
+        if (!$form->isValid()) {
+            $message = $form->getErrors();
+            return \Response::json([
+                'nama'     => $message->first('nama'),
+                'password' => $message->first('password'),
+                'email'    => $message->first('email')
+            ],500);
+        }
+
+        $data = $form->getInputData();
+
+        return $this->user->create($data);
+    }
+
+    public function destroy($id)
+    {
+        return $this->user->destroy($id);
     }
 
 } 

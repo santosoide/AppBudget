@@ -6,7 +6,11 @@ angular.module('userService', [])
             // get data dengan pagination dan pencarian data
             get: function (page, term) {
                 return $http.get('/user?page=' + page + '&term=' + term);
-                //return $http.get('/user');
+            },
+
+            //
+            show: function (_id) {
+                return $http.get('/user/' + _id);
             },
 
             // save a comment (pass in comment data)
@@ -20,8 +24,8 @@ angular.module('userService', [])
             },
 
             // destroy a comment
-            destroy: function (id) {
-                return $http.delete('/user/' + id);
+            destroy: function (_id) {
+                return $http.delete('/user/' + _id);
             }
         }
 
