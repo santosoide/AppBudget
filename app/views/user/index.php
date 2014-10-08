@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Laravel and Angular</title>
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- load bootstrap via cdn -->
     <style>
         body {
             padding-top: 30px;
@@ -16,18 +14,16 @@
             padding-bottom: 20px;
         }
     </style>
-
     <!-- JS -->
     <script src="js/jquery.min.js"></script>
-    <script src="js/angular.min.js"></script>
     <!-- load angular -->
-
-    <script src="js/controllers/main-controller.js"></script>
+    <script src="js/angular.min.js"></script>
     <!-- load our controller -->
-    <script src="js/services/service-app.js"></script>
+    <script src="js/controllers/main-controller.js"></script>
     <!-- load our service -->
-    <script src="js/app.js"></script>
+    <script src="js/services/service-app.js"></script>
     <!-- load our application -->
+    <script src="js/app.js"></script>
 
 </head>
 <!-- declare our angular app and controller -->
