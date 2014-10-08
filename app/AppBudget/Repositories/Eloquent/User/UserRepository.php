@@ -29,7 +29,6 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     public function find($term)
     {
         return $this->model
-//            ->where('nama', 'LIKE', '%' . $term . '%')
             ->FullTextSearch($term)
             ->paginate(2);
     }
