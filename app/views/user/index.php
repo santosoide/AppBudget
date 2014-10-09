@@ -6,10 +6,6 @@
     <title>Laravel and Angular</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
-        body {
-            padding-top: 30px;
-        }
-
         form {
             padding-bottom: 20px;
         }
@@ -18,6 +14,8 @@
     <script src="js/jquery.min.js"></script>
     <!-- load angular -->
     <script src="js/angular.min.js"></script>
+    <!-- load angular ui route-->
+    <script src="js/angular-ui-router.min.js"></script>
     <!-- load our controller -->
     <script src="js/controllers/main-controller.js"></script>
     <!-- load our service -->
@@ -81,30 +79,63 @@
         </div>
     </div>
     <div class="row">
-        <form ng-submit="submitUser()">
+        <form name="userForm" ng-submit="submitUser(userForm.$valid)" novalidate>
             <!-- Nama -->
             <div class="form-group">
-                <input type="text" class="form-control" name="nama" ng-model="userData.nama" placeholder="Nama">
-
-                <p class="text-danger">{{ message.nama}}</p>
+                <input type="text" class="form-control" name="nama" ng-model="userData.nama" placeholder="Nama"
+                       ng-minLength="3" ng-maxLength="50" required focus-me="getFocus">
+                <!-- validasi dari angularjs-->
+                <div class="help-block"
+                     ng-show="userForm.nama.$invalid && !userForm.nama.$pristine && userForm.$submitted.$pristine">
+                    <small class="text-danger" ng-show="userForm.nama.$error.required">Nama harus
+                        diisi.
+                    </small>
+                    <small class="text-danger" ng-show="userForm.nama.$error.minlength">Nama
+                        minimal 3 karakter.
+                    </small>
+                    <small class="text-danger" ng-show="userForm.nama.$error.maxlength">Nama
+                        maksimal 50 karakter.
+                    </small>
+                </div>
+                <!-- validasi dari laravel-->
+                <small class="text-danger">{{ message.nama}}</small>
             </div>
             <!-- Email -->
             <div class="form-group">
-                <input type="text" class="form-control" name="email" ng-model="userData.email"
-                       placeholder="Email">
+                <input type="email" class="form-control" name="email" ng-model="userData.email"
+                       placeholder="Email" required>
 
-                <p class="text-danger">{{ message.email}}</p>
+                <!-- validasi dari angularjs-->
+                <div class="help-block"
+                     ng-show="userForm.email.$invalid && !userForm.email.$pristine && userForm.$submitted.$pristine">
+                    <small class="text-danger" ng-show="userForm.email.$error.required">Email harus
+                        diisi.
+                    </small>
+                    <small class="text-danger" ng-show="userForm.email.$error.email">Email harus valid.</small>
+                </div>
+                <!-- validasi dari laravel-->
+                <small class="text-danger">{{ message.email}}</small>
+
             </div>
             <!-- Password -->
             <div class="form-group">
                 <input type="password" class="form-control" name="password" ng-model="userData.password"
-                       placeholder="Password">
+                       placeholder="Password" required>
 
-                <p class="text-danger">{{ message.password}}</p>
+                <!-- validasi dari angularjs-->
+                <div class="help-block"
+                     ng-show="userForm.password.$invalid && !userForm.password.$pristine && userForm.$submitted.$pristine">
+                    <small class="text-danger" ng-show="userForm.password.$error.required">Password harus
+                        diisi.
+                    </small>
+                </div>
+                <!-- validasi dari laravel-->
+                <small class="text-danger">{{ message.password}}</small>
+
             </div>
             <!-- SUBMIT BUTTON -->
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
             </div>
         </form>
     </div>

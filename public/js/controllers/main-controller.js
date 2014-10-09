@@ -103,23 +103,39 @@ angular.module('mainCtrl', [])
 
         // function simpan user
         $scope.submitUser = function () {
+            // cek apakah validasi sudah benar
+            if ($scope.userForm.$valid) {
+                // simpan
+                User.store($scope.userData)
+                    .success(function () {
 
-            // umpan ke service save data
-            User.store($scope.userData)
-                .success(function (data) {
-                    // return sukses save
-                    $scope.message = {
-                        nama: '',
-                        email: '',
-                        term: ''
-                    };
-                    $scope.getData();
-                })
-                .error(function (data) {
-                    $scope.message.nama = data.nama;
-                    $scope.message.email = data.email;
-                    $scope.message.password = data.password;
-                });
+                        // reset validasi dari server
+                        $scope.message = {
+                            nama: '',
+                            email: '',
+                            term: ''
+                        };
+
+                        // kosong textbox
+                        $scope.userData.nama = '';
+                        $scope.userData.email = '';
+                        $scope.userData.password = '';
+
+                        // load data ulang
+                        $scope.getData();
+                        // notifikasi sukses disini
+
+                        // buat input pertama agar focus
+                        $scope.getFocus = true;
+
+                    })
+                    .error(function (data) {
+                        $scope.message.nama = data.nama;
+                        $scope.message.email = data.email;
+                        $scope.message.password = data.password;
+                    });
+            }
+
         };
 
         // edit data yang akan ditampilkan ke textbox
@@ -157,5 +173,26 @@ angular.module('mainCtrl', [])
                     event.preventDefault();
                 }
             });
+        };
+    })
+
+    // directive untuk membuat input menjadi focus
+    .directive('focusMe', function ($timeout, $parse) {
+        return {
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.focusMe);
+                scope.$watch(model, function (value) {
+                    console.log('value=', value);
+                    if (value === true) {
+                        $timeout(function () {
+                            element[0].focus();
+                        });
+                    }
+                });
+                element.bind('blur', function () {
+                    console.log('blur');
+                    scope.$apply(model.assign(scope, false));
+                })
+            }
         };
     });
