@@ -14,11 +14,21 @@ use AppBudget\Services\Forms\AbstractForm;
 class EditUserForm extends AbstractForm
 {
 
+    /**
+     * Siapkan validasi data user
+     *
+     * @var array
+     */
     protected $rules = [
         'nama'  => 'required|max:255',
         'email' => 'required|max:255'
     ];
 
+    /**
+     * Siapkan input data user
+     * 
+     * @return array
+     */
     public function getInputData()
     {
         return array_only($this->inputData, [
