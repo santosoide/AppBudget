@@ -1,0 +1,22 @@
+<form>
+    <!-- Nama -->
+    <div class="form-group">
+        <input type="text" class="form-control" name="nama" ng-model="item.nama" placeholder="Nama"
+               ng-minLength="3" ng-maxLength="50" required focus-me="getFocus">
+    </div>
+    <!-- Email -->
+    <div class="form-group">
+        <input type="email" class="form-control" name="email" ng-model="item.email"
+               placeholder="Email" required>
+    </div>
+    <!-- Password -->
+    <div class="form-group">
+        <input type="password" class="form-control" name="password" ng-model="item.password"
+               placeholder="Password" required>
+
+    </div>
+    <!-- SUBMIT BUTTON -->
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Update</button>
+    </div>
+</form>

@@ -32,6 +32,32 @@
         <h2>Laravel and Angular Application</h2>
     </div>
     <div class="row">
+        <div class="col-md-4">
+            <a type="button" class="btn btn-success" href="user/78999009">
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+            <button type="button" class="btn btn-default" ng-click='refreshData()'>
+                <i class="glyphicon glyphicon-refresh"></i>
+            </button>
+            <button type="button" class="btn btn-default" ng-click='previousPage()' ng-disabled='current_page <= 1'>
+                <i class="glyphicon glyphicon-chevron-left"></i>
+            </button>
+            <button type="button" class="btn btn-default" ng-click='nextPage()' ng-disabled='main.page >= last_page'>
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+        </div>
+        <div class="col-md-2">
+            <label class="text-muted">{{ from }} - {{ to }} dari {{ total }}</label>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" ng-model="main.term" ng-enter="cariData()" class="form-control" id="cari"
+                       placeholder="Cari">
+            </div>
+        </div>
+    </div>
+    <div ng-view></div>
+    <div class="row">
         <table class="table table-hover">
             <thead>
             <tr>
@@ -56,28 +82,7 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <button type="button" class="btn btn-default" ng-click='refreshData()'>
-                <i class="glyphicon glyphicon-refresh"></i>
-            </button>
-            <button type="button" class="btn btn-default" ng-click='previousPage()' ng-disabled='current_page <= 1'>
-                <i class="glyphicon glyphicon-chevron-left"></i>
-            </button>
-            <button type="button" class="btn btn-default" ng-click='nextPage()' ng-disabled='main.page >= last_page'>
-                <i class="glyphicon glyphicon-chevron-right"></i>
-            </button>
-        </div>
-        <div class="col-md-3">
-            <label class="text-muted">{{ from }} - {{ to }} dari {{ total }}</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <input type="text" ng-model="main.term" ng-enter="cariData()" class="form-control" id="cari"
-                       placeholder="Cari">
-            </div>
-        </div>
-    </div>
+
     <div class="row">
         <form name="userForm" ng-submit="submitUser(userForm.$valid)" novalidate>
             <!-- Nama -->

@@ -26,7 +26,7 @@ class EditUserForm extends AbstractForm
 
     /**
      * Siapkan input data user
-     * 
+     *
      * @return array
      */
     public function getInputData()
